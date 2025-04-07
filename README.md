@@ -6,11 +6,26 @@ CakeMail is an automated birthday greeting system that has evolved from a simple
 
 ### Email Template
 
-![Birthday Email Template](v4/screenshots/email-screenshot.png)
+<img src="v4/screenshots/desktop-email.png" alt="Birthday Email Template" style="width: 100%; height: auto;">
 
-### Notifications
+### Notifications & Contact Notes
 
-![Telegram Notifications](v4/screenshots/telegram-screenshot.jpg)
+<div style="display: flex; justify-content: space-between;">
+  <img src="v4/screenshots/mobile-telegram-notification.png" alt="Telegram Notifications" style="width: 48%; height: auto;">
+  <img src="v4/screenshots/mobile-note-on-google-contact.png" alt="Google Contacts Note" style="width: 48%; height: auto;">
+</div>
+
+<div style="display: flex; justify-content: space-between; margin-top: 20px;">
+  <img src="v4/screenshots/mobile-note-on-redmi-contact-app.png" alt="Mobile Contacts Note" style="width: 48%; height: auto;">
+</div>
+
+## 📸 Visual Overview
+
+### v4 Features
+
+- Email Template: ![Email Template](v4/screenshots/email.png)
+- Contact Notes: ![Contact Notes](v4/screenshots/note-on-google-contact.png)
+- Telegram Notifications: ![Telegram Notifications](v4/screenshots/telegram-notification.png)
 
 ## 🚀 Project Evolution
 

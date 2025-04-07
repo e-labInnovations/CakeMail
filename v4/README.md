@@ -185,22 +185,20 @@ The script requires the following permissions:
 
 ## 🧪 Sample Output
 
-> **Email Subject**: 🎂 Happy Birthday [Name]  
-> **Email Body**: A beautiful HTML email with:
->
-> - Personalized greeting
-> - Birthday message
-> - Animated cake images
-> - Contact information
-> - Social media links
-> - Tracking pixel
+### Email Template
 
-> **Telegram Notifications**:
->
-> - "Birthday wish sent to [Name]"
-> - "[Name] has viewed the mail"
-> - "[Name] has birthday tomorrow"
-> - Optional WhatsApp notifications with similar content
+<img src="screenshots/desktop-email.png" alt="Email Template" style="width: 100%; height: auto;">
+
+### Notifications & Contact Notes
+
+<div style="display: flex; justify-content: space-between;">
+  <img src="screenshots/mobile-telegram-notification.png" alt="Telegram Notifications" style="width: 48%; height: auto;">
+  <img src="screenshots/mobile-note-on-google-contact.png" alt="Google Contacts Note" style="width: 48%; height: auto;">
+</div>
+
+<div style="display: flex; justify-content: space-between; margin-top: 20px;">
+  <img src="screenshots/mobile-note-on-redmi-contact-app.png" alt="Mobile Contacts Note" style="width: 48%; height: auto;">
+</div>
 
 ---
 
