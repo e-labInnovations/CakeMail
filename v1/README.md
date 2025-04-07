@@ -15,21 +15,26 @@ The OG version of CakeMail — a simple Google Apps Script setup that automatica
 
 ## 📁 What You Need
 
-### 1. A Google Sheet like this
+### 1. Google Sheet Setup
 
 [📋 Sample Sheet](https://docs.google.com/spreadsheets/d/1c7eOIiUi-fphSxCjzEV2bGc1wmc2DwwL7pNzNpOYNdc/edit?usp=sharing)
 
-It should include:
+Required columns:
 
-| Timestamp         | Name | Date of Birth | Mail Id          | Phone Number | Occupation         | Status           |
-| ----------------- | ---- | ------------- | ---------------- | ------------ | ------------------ | ---------------- |
-| 1/6/2019 13:56:38 | Rick | 1/15/1943     | rick@elabins.com | optional     | Scientist Inventor | Bday wishes sent |
+- Timestamp
+- Name
+- Date of Birth
+- Mail Id
+- Phone Number (optional)
+- Occupation (optional)
+- Status
 
-### 2. A Google Doc as your email template
+### 2. Email Template
 
 [📄 Sample Template Doc](https://docs.google.com/document/d/1-iktISoHDoPmZX8yL7Q1DvYb9jhSrwmcBlCyPa08ntA/edit?usp=sharing)
 
-Use the placeholder `#name#` inside the doc where you want the recipient's name to appear.
+- Google Doc with HTML formatting
+- Use `#name#` placeholder for recipient's name
 
 ---
 
@@ -37,74 +42,82 @@ Use the placeholder `#name#` inside the doc where you want the recipient's name 
 
 ### Step 1: Create a New Google Apps Script Project
 
-- Go to [script.google.com](https://script.google.com)
-- Create a new script
-- Paste in the contents of [`v1/src/main.gs`](./src/main.gs)
+1. Go to [script.google.com](https://script.google.com)
+2. Create a new script
+3. Paste in the contents of `main.gs`
 
-### Step 2: Replace Placeholders
+### Step 2: Configure the Script
 
-In the script, replace the following with your own values:
+Replace the following in the script:
 
 ```js
-var ss = SpreadsheetApp.openByUrl("<replace with your sheet url>");
-var templateId = "<replace with your google doc template id>";
+var ss = SpreadsheetApp.openByUrl("<your-sheet-url>");
+var templateId = "<your-doc-template-id>";
 ```
 
-### Step 3: Set a Time-Based Trigger
+### Step 3: Set Up Trigger
 
-- In the Apps Script Editor:
-  - Go to **Triggers** (⏰ icon on left)
-  - Create a new trigger for `sendBdayWishes`
-  - Choose **Time-driven → Day timer → 12am to 1am**
+1. In Apps Script Editor:
+   - Go to **Triggers** (⏰ icon)
+   - Create trigger for `sendBdayWishes`
+   - Set to run daily (12am to 1am)
 
 ### Step 4: Done! 🎉
 
-Once setup, CakeMail v1 will:
+The script will now:
 
-- Check daily at midnight for any birthdays
-- Send personalized emails using the HTML template
-- Update the "Status" column in your sheet
+- Check for birthdays daily
+- Send personalized emails
+- Update status in sheet
 
 ---
 
 ## 🧠 How It Works
 
-1. It loops through the rows in the sheet
-2. Compares the current date with each contact's DOB
-3. For matches, it:
-   - Replaces `#name#` in the Google Doc template
-   - Converts it to HTML
-   - Sends a birthday email
-   - Updates the status in the sheet
+1. **Birthday Check**:
+
+   - Loops through sheet rows
+   - Compares current date with DOB
+
+2. **Email Sending**:
+
+   - Gets template from Google Doc
+   - Replaces `#name#` placeholder
+   - Sends personalized email
+
+3. **Status Update**:
+   - Marks "Bday wishes sent" in sheet
+   - Includes timestamp
 
 ---
 
 ## 🔐 Permissions
 
-First run may require authorization. The script needs permission to:
+The script needs access to:
 
-- Access Google Sheets
-- Access Google Docs and Drive
-- Send email on your behalf
+- Google Sheets
+- Google Docs and Drive
+- Gmail for sending emails
 
 ---
 
 ## 🧪 Sample Output
 
-> **Subject**: Happy BirthDay Rick  
-> **Body**: _(HTML content from your template with Rick’s name inserted)_
+> **Subject**: Happy Birthday [Name]  
+> **Body**: _(Formatted content from Google Doc template)_
 
 ---
 
 ## 💬 Credits
 
 Created by [Mohammed Ashad](https://github.com/e-labinnovations)  
-Inspired by a YouTube tutorial back in 2019. Brought to life and now open-sourced as part of **CakeMail**!
+Part of the **CakeMail** project!
 
 ---
 
-## 🔄 Upgraded Versions
+## 🔄 Version History
 
-- ✅ [v2](../v2/README.md) –
-- ✅ [v3](../v3/README.md) –
-- ✅ [v4](../v4/README.md) –
+- ✅ v1 - Current version with Google Sheets and Doc templates
+- [v2](../v2/README.md) - Enhanced version with HTML templates
+- [v3](../v3/README.md) - Version with Google Contacts
+- [v4](../v4/README.md) - Latest version with People API

@@ -16,22 +16,28 @@ An enhanced version of CakeMail that automatically sends beautiful HTML birthday
 
 ## 📁 What You Need
 
-### 1. A Google Sheet with the following structure
+### 1. Google Sheet Setup
 
 [📋 Sample Sheet](https://docs.google.com/spreadsheets/d/1CjCzzu-bKQw4tVEWIVJycJeNhwYwbQVr1ZmICNRUB1o/edit?gid=538178223#gid=538178223)
 
-| Timestamp          | Name | Mail ID          | Birthday  | Mobile NO | Status                                             |
-| ------------------ | ---- | ---------------- | --------- | --------- | -------------------------------------------------- |
-| 10/18/2020 6:53:42 | Rick | rick@elabins.com | 1/15/1943 | optional  | "Wish sent in 2022\nViewed on 4/6/2022 @ 12:34:19" |
+Required columns:
 
-### 2. HTML Email Template
+- Timestamp
+- Name
+- Mail ID
+- Birthday
+- Mobile NO (optional)
+- Status
 
-The template (`template.html`) is a beautiful, responsive HTML email template that includes:
+### 2. Email Template
+
+The template (`template.html`) includes:
 
 - Custom branding and logo
 - Birthday message
 - Contact information
 - Email tracking pixel
+- Mobile-responsive design
 
 ---
 
@@ -47,7 +53,7 @@ The template (`template.html`) is a beautiful, responsive HTML email template th
 
 ### Step 2: Configure the Script
 
-In `Code.gs`, replace the following with your own values:
+Replace the following in the script:
 
 ```js
 const ss = SpreadsheetApp.openById("<spreadsheetId>");
@@ -56,51 +62,55 @@ const sheet = ss.getSheetByName("Form responses 1");
 
 ### Step 3: Set Up Email Tracking
 
-The script includes a tracking mechanism that works via:
+1. Deploy as web app for tracking
+2. Set up `doGet` function
+3. Add tracking pixel to template
 
-1. A tracking pixel in the email template
-2. A `doGet` function that records when emails are opened
-3. Updates the status column with viewing timestamps
+### Step 4: Set Up Trigger
 
-### Step 4: Set a Time-Based Trigger
-
-- In the Apps Script Editor:
-  - Go to **Triggers** (⏰ icon on left)
-  - Create a new trigger for `sendBdayWishes`
-  - Choose **Time-driven → Day timer → 12am to 1am**
+1. In Apps Script Editor:
+   - Go to **Triggers** (⏰ icon)
+   - Create trigger for `sendBdayWishes`
+   - Set to run daily (12am to 1am)
 
 ### Step 5: Done! 🎉
 
-Once setup, CakeMail v2 will:
+The script will now:
 
-- Check daily at midnight for any birthdays
-- Send beautiful HTML birthday emails
-- Track when emails are opened
-- Update the "Status" column with tracking information
+- Check for birthdays daily
+- Send beautiful HTML emails
+- Track email opens
+- Update status with tracking info
 
 ---
 
 ## 🧠 How It Works
 
-1. **Birthday Check**: The script runs daily at midnight
+1. **Birthday Check**:
+
+   - Loops through sheet rows
+   - Compares current date with DOB
+
 2. **Email Sending**:
-   - For each birthday match, it creates a personalized HTML email
-   - Uses the template with the recipient's name
-   - Includes a tracking pixel
+
+   - Uses HTML template
+   - Personalizes content
+   - Adds tracking pixel
+
 3. **Tracking**:
-   - When the email is opened, the tracking pixel triggers
-   - The `doGet` function records the view
-   - Updates the status column with viewing timestamp
+   - Records email opens
+   - Updates sheet status
+   - Logs viewing time
 
 ---
 
 ## 🔐 Permissions
 
-The script requires the following permissions:
+The script needs access to:
 
-- Access to Google Sheets
-- Send email on your behalf
-- Deploy as a web app (for tracking)
+- Google Sheets
+- Gmail for sending emails
+- Deploy as web app (for tracking)
 
 ---
 
@@ -125,7 +135,7 @@ Part of the **CakeMail** project!
 
 ## 🔄 Version History
 
-- [v1](../v1/README.md) - Original version with Google Doc templates
+- [v1](../v1/README.md) - Original version with Google Sheets and Doc templates
 - ✅ v2 - Current version with HTML templates and tracking
-- [v3](../v3/README.md) - Next version
-- [v4](../v4/README.md) - Latest version
+- [v3](../v3/README.md) - Version with Google Contacts
+- [v4](../v4/README.md) - Latest version with People API

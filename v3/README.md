@@ -6,7 +6,7 @@ An advanced version of CakeMail that leverages Google Contacts for birthday mana
 
 ## ✨ Features
 
-- Uses Google Contacts as the data source (no more spreadsheets!)
+- Uses Google Contacts as the data source
 - Sends beautiful, responsive HTML birthday emails with:
   - Custom branding and logo
   - Animated birthday cake images
@@ -15,7 +15,7 @@ An advanced version of CakeMail that leverages Google Contacts for birthday mana
   - Contact information
   - Email tracking pixel
 - Tracks email opens using a tracking pixel
-- Sends WhatsApp notifications for:
+- Sends WhatsApp notifications (via whatabot.net) for:
   - Birthday wishes sent
   - Email opens
   - Upcoming birthdays (next day)
@@ -28,30 +28,30 @@ An advanced version of CakeMail that leverages Google Contacts for birthday mana
 
 ### 1. Google Contacts Setup
 
-- Add contacts with:
-  - Full name
-  - Email address
-  - Birthday date
-  - (Optional) Phone number
+Add contacts with:
 
-### 2. HTML Email Templates
+- Full name
+- Email address
+- Birthday date
+- (Optional) Phone number
+- (Optional) Notes for tracking
 
-Two beautiful, responsive HTML email templates are included:
+### 2. Email Templates
 
-1. `template.html` - A modern design with:
+Two beautiful, responsive HTML templates:
 
-   - Gradient background
+1. `template.html`:
+
+   - Modern design with gradient background
    - Animated cupcake images
    - Social media integration
    - Contact section
-   - Unsubscribe link
 
-2. `template2.html` - A classic design with:
+2. `template2.html`:
+   - Classic design with birthday cake
    - Elegant typography
-   - Birthday cake illustration
    - Clean layout
    - Contact information
-   - Social links
 
 Both templates include:
 
@@ -75,83 +75,81 @@ Both templates include:
 2. Create a new script
 3. Create three files:
    - `Code.gs` - Main script file
-   - `template.html` - Modern email template
-   - `template2.html` - Classic email template
+   - `template.html` - Modern template
+   - `template2.html` - Classic template
 
 ### Step 2: Configure the Script
 
-In `Code.gs`, set up the following configuration:
+Add the following configuration:
 
 ```js
 const CONFIG = {
   WHATSAPP_API_KEY: "", // Your WhatsApp API key
-  WHATSAPP_PHONE_NUMBER: "", // Your notification phone number
+  WHATSAPP_PHONE_NUMBER: "", // Your notification number
   SCRIPT_ID: "", // Your script's deployment ID
 };
 ```
 
 ### Step 3: Set Up Email Tracking
 
-The script includes a tracking mechanism that works via:
-
-1. A tracking pixel in the email templates
-2. A `doGet` function that records when emails are opened
-3. Updates contact notes with viewing timestamps
+1. Deploy as web app for tracking
+2. Set up `doGet` function
+3. Add tracking pixel to templates
 
 ### Step 4: Set Up Triggers
 
-- In the Apps Script Editor:
-  - Go to **Triggers** (⏰ icon on left)
-  - Create two triggers:
-    1. `sendBdayWishes` - Time-driven → Day timer → 12am to 1am
-    2. `sendWhatsappAlert` - Time-driven → Day timer → 10am to 11am
+1. In Apps Script Editor:
+   - Go to **Triggers** (⏰ icon)
+   - Create trigger for `sendBdayWishes`
+   - Set to run daily (12am to 1am)
+   - Create trigger for `sendWhatsappAlert`
+   - Set to run daily (9pm to 10pm)
 
-### Step 5: Deploy as Web App
+### Step 5: Done! 🎉
 
-- Deploy the script as a web app to enable email tracking
-- Set access to "Anyone, even anonymous"
-- Copy the deployment URL for the `SCRIPT_ID` in your config
+The script will now:
 
-### Step 6: Done! 🎉
-
-Once setup, CakeMail v3 will:
-
-- Check daily at midnight for any birthdays
-- Send beautiful HTML birthday emails using either template
-- Track when emails are opened
-- Send WhatsApp notifications for:
-  - Birthday wishes sent
-  - Email opens
-  - Upcoming birthdays (next day)
+- Check for birthdays daily
+- Send beautiful HTML emails
+- Track email opens
+- Send WhatsApp notifications
 
 ---
 
 ## 🧠 How It Works
 
-1. **Birthday Check**: The script runs daily at midnight
+1. **Birthday Check**:
+
+   - Checks Google Contacts for birthdays
+   - Filters contacts with email addresses
+
 2. **Email Sending**:
-   - For each birthday match in Google Contacts, it creates a personalized HTML email
-   - Uses either template with the recipient's name
-   - Includes a tracking pixel
+
+   - Uses chosen HTML template
+   - Personalizes content
+   - Adds tracking pixel
+
 3. **Tracking**:
-   - When the email is opened, the tracking pixel triggers
-   - The `doGet` function records the view
-   - Updates contact notes with viewing timestamp
-4. **WhatsApp Notifications**:
-   - Sends alerts when birthday wishes are sent
-   - Notifies when emails are opened
-   - Alerts about upcoming birthdays (next day)
+
+   - Records email opens
+   - Updates contact notes
+   - Sends WhatsApp notification
+
+4. **WhatsApp Alerts**:
+   - Notifies about sent wishes
+   - Alerts about email opens
+   - Reminds of upcoming birthdays
 
 ---
 
 ## 🔐 Permissions
 
-The script requires the following permissions:
+The script needs access to:
 
-- Access to Google Contacts
-- Send email on your behalf
-- Deploy as a web app (for tracking)
-- Access to WhatsApp API
+- Google Contacts
+- Gmail for sending emails
+- Deploy as web app (for tracking)
+- WhatsApp API access
 
 ---
 
@@ -162,10 +160,9 @@ The script requires the following permissions:
 >
 > - Personalized greeting
 > - Birthday message
-> - Animated cake images
+> - Animated images
 > - Contact information
 > - Social media links
-> - Tracking pixel
 
 > **WhatsApp Notifications**:
 >
@@ -187,4 +184,4 @@ Part of the **CakeMail** project!
 - [v1](../v1/README.md) - Original version with Google Sheets and Doc templates
 - [v2](../v2/README.md) - Enhanced version with HTML templates and tracking
 - ✅ v3 - Current version with Google Contacts and WhatsApp integration
-- [v4](../v4/README.md) - Latest version
+- [v4](../v4/README.md) - Latest version with People API
