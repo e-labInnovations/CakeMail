@@ -100,3 +100,11 @@ First run may require authorization. The script needs permission to:
 
 Created by [Mohammed Ashad](https://github.com/e-labinnovations)  
 Inspired by a YouTube tutorial back in 2019. Brought to life and now open-sourced as part of **CakeMail**!
+
+---
+
+## 🔄 Upgraded Versions
+
+- ✅ [v2](../v2/README.md) –
+- ✅ [v3](../v3/README.md) –
+- ✅ [v4](../v4/README.md) –
